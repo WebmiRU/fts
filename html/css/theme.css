@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 45px 1fr;
+    grid-template-areas: "header header" "aside main";
+    min-height: 100vh;
+}
+
+/*header, aside, main {*/
+/*    border: 1px solid maroon;*/
+/*}*/
+
+header {
+    grid-area: header;
+    background: aquamarine;
+    border-bottom: 2px solid gray;
+}
+
+aside {
+    grid-area: aside;
+    background: antiquewhite;
+}
+
+main {
+    grid-area: main;
+    background: cadetblue;
+}
