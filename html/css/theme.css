@@ -37,7 +37,7 @@ header .left-icons {
     list-style-type: none;
 }
 
-header .left-icons li, header .right-icons li {
+header .left-icons li, header .right-icons li, header .icons-search li {
     border-radius: 5px;
 }
 
@@ -46,6 +46,10 @@ header .left-icons .left-arrow {
     width: 30px;
     background: url("../img/arrow1_left.svg") center center no-repeat;
     background-size: 20px 20px;
+}
+
+header .icon:hover {
+    background-color: darkgrey !important;
 }
 
 header .left-icons .right-arrow {
@@ -87,15 +91,15 @@ header .search .icons-search {
 }
 
 header .search .icon-params {
-    height: 20px;
-    width: 20px;
+    height: 22px;
+    width: 22px;
     background: url("../img/params1.svg") center center no-repeat;
     background-size: 16px 16px;
 }
 
 header .search .icon-search {
-    height: 20px;
-    width: 20px;
+    height: 22px;
+    width: 22px;
     background: url("../img/search1.svg") center center no-repeat;
     background-size: 16px 16px;
 }
@@ -122,6 +126,54 @@ header .right-icons .icon-avatar {
     height: 30px;
     width: 30px;
     background: white;
+}
+
+header .right-icons .icon-avatar.online:after {
+    height: 10px;
+    width: 10px;
+    background: green;
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+}
+
+header .right-icons .icon-avatar.away:after {
+    height: 10px;
+    width: 10px;
+    background: goldenrod;
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+}
+
+header .right-icons .icon-avatar.busy:after {
+    height: 10px;
+    width: 10px;
+    background: red;
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+}
+
+header .right-icons .icon-avatar.offline:after {
+    height: 10px;
+    width: 10px;
+    background: gray;
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
 }
 
 aside {
