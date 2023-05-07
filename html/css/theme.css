@@ -18,9 +18,110 @@ body {
 /*}*/
 
 header {
+    display: grid; /*grid-таблица*/
     grid-area: header;
     background: aquamarine;
     border-bottom: 2px solid gray;
+    grid-template-areas: "left-icons search right-icons";
+    grid-template-columns: 200px 1fr 200px;
+    padding: 0 20px;
+    align-items: center; /*выравнивание вертикаль*/
+}
+
+header .left-icons {
+    grid-area: left-icons;
+    height: 30px;
+    display: flex;
+    justify-content: left;
+    gap: 10px;
+    list-style-type: none;
+}
+
+header .left-icons li, header .right-icons li {
+    border-radius: 5px;
+}
+
+header .left-icons .left-arrow {
+    height: 30px;
+    width: 30px;
+    background: url("../img/arrow1_left.svg") center center no-repeat;
+    background-size: 20px 20px;
+}
+
+header .left-icons .right-arrow {
+    height: 30px;
+    width: 30px;
+    background: url("../img/arrow1_right.svg") center center no-repeat;
+    background-size: 20px 20px;
+}
+
+header .left-icons .clock {
+    height: 30px;
+    width: 30px;
+    background: url("../img/clock.svg") center center no-repeat;
+    background-size: 20px 20px;
+}
+
+header .search {
+    grid-area: search;
+    height: 30px;
+}
+
+header .search [type=search] {
+    display: block;
+    height: 30px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+header .search .icons-search {
+    position: absolute;
+    right: 6px;
+    height: 30px;
+    top: 0;
+    list-style-type: none;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+header .search .icon-params {
+    height: 20px;
+    width: 20px;
+    background: url("../img/params1.svg") center center no-repeat;
+    background-size: 16px 16px;
+}
+
+header .search .icon-search {
+    height: 20px;
+    width: 20px;
+    background: url("../img/search1.svg") center center no-repeat;
+    background-size: 16px 16px;
+}
+
+header .right-icons {
+    grid-area: right-icons;
+    height: 30px;
+    display: flex;
+    list-style-type: none;
+    gap: 5px;
+    align-items: center;
+    margin: 0 20px;
+    justify-content: right;
+}
+
+header .right-icons .icon-help {
+    height: 30px;
+    width: 30px;
+    background: url("../img/help1.svg") center center no-repeat;
+    background-size: 24px 24px;
+}
+
+header .right-icons .icon-avatar {
+    height: 30px;
+    width: 30px;
+    background: white;
 }
 
 aside {
