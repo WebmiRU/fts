@@ -20,21 +20,21 @@ body {
 header {
     display: grid; /*grid-таблица*/
     grid-area: header;
-    background: aquamarine;
-    border-bottom: 2px solid gray;
     grid-template-areas: "left-icons search right-icons";
     grid-template-columns: 200px 1fr 200px;
+    border-bottom: 1px solid gray;
     padding: 0 20px;
     align-items: center; /*выравнивание вертикаль*/
+    background: aquamarine;
 }
 
 header .left-icons {
+    list-style-type: none;
+    display: flex;
     grid-area: left-icons;
     height: 30px;
-    display: flex;
-    justify-content: left;
     gap: 10px;
-    list-style-type: none;
+    justify-content: left;
 }
 
 header .left-icons li, header .right-icons li, header .icons-search li {
@@ -80,12 +80,12 @@ header .search [type=search] {
 }
 
 header .search .icons-search {
+    list-style-type: none;
+    display: flex;
     position: absolute;
     right: 6px;
     height: 30px;
     top: 0;
-    list-style-type: none;
-    display: flex;
     gap: 5px;
     align-items: center;
 }
@@ -105,12 +105,12 @@ header .search .icon-search {
 }
 
 header .right-icons {
-    grid-area: right-icons;
-    height: 30px;
-    display: flex;
     list-style-type: none;
-    gap: 5px;
+    display: flex;
+    grid-area: right-icons;
     align-items: center;
+    height: 30px;
+    gap: 5px;
     margin: 0 20px;
     justify-content: right;
 }
@@ -129,15 +129,15 @@ header .right-icons .icon-avatar {
 }
 
 header .right-icons .icon-avatar.online:after {
-    height: 10px;
-    width: 10px;
-    background: green;
-    content: '';
     display: block;
     position: absolute;
+    height: 10px;
+    width: 10px;
+    content: '';
     right: 0;
     bottom: 0;
     border-radius: 50%;
+    background: green;
 }
 
 header .right-icons .icon-avatar.away:after {
@@ -177,8 +177,55 @@ header .right-icons .icon-avatar.offline:after {
 }
 
 aside {
+    display: grid; /*grid-таблица*/
     grid-area: aside;
+    grid-template-areas: "heading" "conversations" "channel" "communicatiuon";
+    grid-template-rows: 60px min-content min-content 1fr;
+    border-bottom: 1px solid gray;
+    border-right: 2px solid gray;
     background: antiquewhite;
+}
+
+aside .heading {
+    list-style-type: none;
+    display: grid;
+    grid-area: heading;
+    grid-template-columns: 1fr 1fr 50px;
+    padding: 10px 20px;
+    align-items: center;
+    border-bottom: 1px solid gray;
+    gap: 10px;
+}
+
+aside .heading .icon-list {
+    height: 20px;
+    width: 20px;
+    background: url("../img/chevron-down1.svg") center center no-repeat;
+    background-size: 24px 24px;
+}
+
+aside .heading .icon-edit {
+    height: 30px;
+    width: 30px;
+    background: url("../img/edit1.svg") center center no-repeat;
+    background-size: 24px 24px;
+}
+
+aside .conversations {
+    grid-area: conversations;
+    padding: 10px 20px;
+    border-bottom: 1px solid gray;
+}
+
+aside .channel {
+    grid-area: channel;
+    padding: 10px 20px;
+    border-bottom: 1px solid gray;
+}
+
+aside .communicatiuon {
+    grid-area: communicatiuon;
+    padding: 10px 20px;
 }
 
 main {
