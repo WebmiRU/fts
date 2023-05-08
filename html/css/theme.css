@@ -186,11 +186,16 @@ aside {
     background: antiquewhite;
 }
 
+aside .icon:hover {
+    background-color: darkgrey !important;
+    border-radius: 8px;
+}
+
 aside .heading {
     list-style-type: none;
     display: grid;
     grid-area: heading;
-    grid-template-columns: 1fr 1fr 50px;
+    grid-template-columns: 1fr 1fr 36px;
     padding: 10px 20px;
     align-items: center;
     border-bottom: 1px solid gray;
@@ -205,27 +210,174 @@ aside .heading .icon-list {
 }
 
 aside .heading .icon-edit {
-    height: 30px;
-    width: 30px;
-    background: url("../img/edit1.svg") center center no-repeat;
-    background-size: 24px 24px;
+    height: 36px;
+    width: 36px;
+    background: url("../img/edit1.svg") center center no-repeat white;
+    background-size: 18px 18px;
+    border-radius: 50%;
 }
 
 aside .conversations {
+    list-style-type: none;
+    display: grid;
     grid-area: conversations;
     padding: 10px 20px;
     border-bottom: 1px solid gray;
 }
 
+aside .conversations li{
+    display: inline-block;
+    padding-left: 30px;
+    vertical-align: middle;
+    min-height: 30px;
+    line-height: 30px;
+}
+
+aside .conversations .icon-conversations {
+    height: 30px;
+    background: url("../img/bubble1.svg") center left 4px no-repeat;
+    background-size: 20px 20px;
+    }
+
+aside .conversations .icon-later {
+    height: 30px;
+    background: url("../img/bookmark1.svg") center left 4px no-repeat;
+    background-size: 20px 20px;
+}
+
+aside .conversations .icon-communicatiuon {
+    height: 30px;
+    background: url("../img/bubbles3.svg") center left 4px no-repeat;
+    background-size: 20px 20px;
+}
+
+aside .conversations .icon-monkey {
+    height: 30px;
+    background: url("../img/at-sign1.svg") center left 4px no-repeat;
+    background-size: 20px 20px;
+}
+
+aside .conversations .icon-aircraft {
+    height: 30px;
+    background: url("../img/send1.svg") center left 4px no-repeat;
+    background-size: 20px 20px;
+}
+
+aside .conversations .icon-society {
+    height: 30px;
+    background: url("../img/office1.svg") center left 4px no-repeat;
+    background-size: 20px 20px;
+}
+
+aside .conversations .icon-dot {
+    height: 30px;
+    background: url("../img/more-vertical1.svg") center left 4px no-repeat;
+    background-size: 20px 20px;
+}
+
 aside .channel {
+    list-style-type: none;
+    display: grid;
     grid-area: channel;
     padding: 10px 20px;
     border-bottom: 1px solid gray;
 }
 
+aside .channel li{
+    display: inline-block;
+    padding-left: 30px;
+    vertical-align: middle;
+    min-height: 30px;
+    line-height: 30px;
+}
+
+aside .channel .icon-develop {
+    height: 30px;
+    background: url("../img/chevron-down1.svg") center left 4px no-repeat;
+    background-size: 20px 20px;
+}
+
+aside .channel .icon-close {
+    height: 30px;
+    background: url("../img/lock1.svg") center left 4px no-repeat;
+    background-size: 20px 20px;
+}
+
+aside .channel .icon-sharp {
+    height: 30px;
+    background: url("../img/hash1.svg") center left 4px no-repeat;
+    background-size: 20px 20px;
+}
+
+aside .channel .icon-add {
+    height: 30px;
+    background: url("../img/plus1.svg") center left 6px no-repeat;
+    background-size: 10px 10px;
+}
+
 aside .communicatiuon {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
     grid-area: communicatiuon;
     padding: 10px 20px;
+    border-bottom: 1px solid gray;
+}
+
+aside .communicatiuon li {
+    display: block;
+    vertical-align: middle;
+    min-height: 30px;
+    line-height: 30px;
+}
+
+aside .communicatiuon li i{
+    display: inline-block;
+    height: 28px;
+    width: 28px;
+}
+
+aside .communicatiuon li i:after{
+    display: block;
+    height: 10px;
+    width: 10px;
+    position: absolute;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50%;
+    content: '';
+}
+
+aside .communicatiuon li i.online:after{
+    background: green;
+}
+
+aside .communicatiuon li i.busy:after{
+    background: red;
+}
+
+aside .communicatiuon li i.away:after{
+     background: goldenrod;
+}
+
+aside .communicatiuon li i.offline:after{
+     background: gray;
+}
+
+aside .communicatiuon .icon-develop {
+    height: 30px;
+    background: url("../img/chevron-down1.svg") center left no-repeat;
+    background-size: 20px 20px;
+    padding-left: 30px;
+}
+
+aside .communicatiuon .icon-add {
+    height: 30px;
+    background: url("../img/plus1.svg") center left 6px no-repeat;
+    background-size: 10px 10px;
+    padding-left: 30px;
 }
 
 main {
