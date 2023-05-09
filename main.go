@@ -32,7 +32,6 @@ func accept(w http.ResponseWriter, r *http.Request) {
 	defer socket.Close()
 
 	for {
-		//messageType, message, e := socket.ReadMessage()
 		_, message, e := socket.ReadMessage()
 
 		if e != nil {
@@ -69,13 +68,6 @@ func accept(w http.ResponseWriter, r *http.Request) {
 		}
 
 		log.Printf("REVICED:\n%s\n", msg)
-
-		//e = socket.WriteMessage(messageType, message)
-		//
-		//if e != nil {
-		//	log.Println("write:", e)
-		//	break
-		//}
 	}
 }
 
