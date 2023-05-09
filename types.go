@@ -1,9 +1,10 @@
 package main
 
 type MessagePayload struct {
+	Token string `json:"token"`
 }
 
 type Message struct {
-	Type    string
-	Payload MessagePayload
+	Type    string         `json:"type"`
+	Payload MessagePayload `json:"payload"`
 }

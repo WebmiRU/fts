@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"fmt"
 	"github.com/gorilla/websocket"
@@ -9,8 +10,11 @@ import (
 	"gorm.io/gorm/schema"
 	"log"
 	"net/http"
+	"strings"
 )
 
+var db *gorm.DB
+var sockets = make(map[*websocket.Conn]*User)
 var addr = flag.String("addr", "0.0.0.0:13900", "http service address")
 var upgrader = websocket.Upgrader{
 	CheckOrigin: func(r *http.Request) bool {
@@ -19,36 +23,67 @@ var upgrader = websocket.Upgrader{
 }
 
 func accept(w http.ResponseWriter, r *http.Request) {
-	c, e := upgrader.Upgrade(w, r, nil)
+	socket, e := upgrader.Upgrade(w, r, nil)
 	if e != nil {
 		log.Print("UPGRADE:", e)
 		return
 	}
 
-	defer c.Close()
+	defer socket.Close()
 
 	for {
-		messageType, message, e := c.ReadMessage()
+		//messageType, message, e := socket.ReadMessage()
+		_, message, e := socket.ReadMessage()
 
 		if e != nil {
 			log.Println("read:", e)
 			break
 		}
 
-		log.Printf("REVICED:\n%s\n", message)
-
-		e = c.WriteMessage(messageType, message)
+		var msg Message
+		e = json.Unmarshal(message, &msg)
 
 		if e != nil {
-			log.Println("write:", e)
+			fmt.Println("JSON PARSE ERROR", e)
+		}
+
+		switch strings.ToLower(msg.Type) {
+		case "auth/login":
+			var user = cmdLogin(msg.Payload.Token)
+
+			if user.ID == 0 {
+				var response, _ = json.Marshal(MessageAuthLoginError)
+				socket.WriteMessage(websocket.TextMessage, response)
+				socket.Close() // Auth error
+				break
+			}
+
+			sockets[socket] = &user
+
+			var response, _ = json.Marshal(MessageAuthLoginOK)
+			socket.WriteMessage(websocket.TextMessage, response)
+
+			println("ID:", user.ID)
+			fmt.Printf("\nCHANNELS:\n%+v\n:", sockets)
 			break
 		}
+
+		log.Printf("REVICED:\n%s\n", msg)
+
+		//e = socket.WriteMessage(messageType, message)
+		//
+		//if e != nil {
+		//	log.Println("write:", e)
+		//	break
+		//}
 	}
 }
 
 func main() {
-	dsn := "host=192.168.1.151 user=postgres password=postgres dbname=fts port=5415 sslmode=disable TimeZone=Europe/Moscow"
-	db, e := gorm.Open(postgres.Open(dsn), &gorm.Config{
+	var dsn = "host=localhost user=fts password=fts dbname=fts port=5432 sslmode=disable TimeZone=Europe/Moscow"
+	var e error
+
+	db, e = gorm.Open(postgres.Open(dsn), &gorm.Config{
 		NamingStrategy: schema.NamingStrategy{
 			SingularTable: true,
 		},
