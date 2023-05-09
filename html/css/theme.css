@@ -423,9 +423,10 @@ main .titel-chat .icon-list {
 
 main .bookmark {
     list-style-type: none;
-    display: grid;
+    display: flex;
     grid-area: bookmark;
-    grid-template-columns: 1fr;
+    grid-template-areas: "icon-add" "space";
+    grid-template-columns: min-content 1fr;
     padding: 10px 20px;
     align-items: center;
     border-bottom: 1px solid black;
@@ -447,24 +448,89 @@ main .bookmark .icon-add {
     padding-left: 30px;
 }
 
+main .bookmark .space {
+    grid-area: space;
+}
+
 main .messages {
     list-style-type: none;
     display: grid;
     grid-area: messages;
-    grid-template-columns: 1fr;
     padding: 10px 20px;
     align-items: center;
     border-bottom: 1px solid black;
     gap: 10px;
 }
 
+main .messages .space {
+    grid-area: space;
+    height: 40px;
+}
+
+main .messages .messages_1 {
+    display: grid;
+    grid-template-areas: "icon-avatar nickname time space" "icon-avatar text text text" "icon-avatar replies replies replies";
+    grid-template-columns: 40px min-content min-content 1fr;
+    border-bottom: white 1px solid;
+    padding-bottom: 5px;
+    gap: 10px;
+}
+
+main .messages .icon-avatar {
+    grid-area: icon-avatar;
+    height: 40px;
+    width: 40px;
+    background: url('https://avatars.akamai.steamstatic.com/c59df74416a5efd9fd7dd099d899fa7b28cba6c6_full.jpg');
+    background-size: contain;
+}
+
+main .messages .mini-avatar {
+    grid-area: mini-avatar;
+    height: 20px;
+    width: 20px;
+    background: url('https://avatars.akamai.steamstatic.com/c59df74416a5efd9fd7dd099d899fa7b28cba6c6_full.jpg');
+    background-size: contain;
+}
+
+main .messages .text {
+    grid-area: text;
+}
+
+main .messages .nickname {
+    grid-area: nickname;
+}
+
+main .messages .time {
+    grid-area: time;
+}
+
+main .messages .replies {
+    display: flex;
+    grid-area: replies;
+    gap: 6px;
+}
+
+main .messages .reply {
+    grid-area: reply;
+    white-space: nowrap;
+}
+
+main .messages .time_day {
+    grid-area: time_day;
+    white-space: nowrap;
+}
+
 main .text-editor {
     list-style-type: none;
     display: grid;
     grid-area: text-editor;
-    grid-template-columns: 1fr;
+    height: 150px;
     padding: 10px 20px;
-    align-items: center;
-    border-bottom: 1px solid black;
-    gap: 10px;
+    border: black 1px solid;
+}
+
+main .text-editor .editor {
+    display: block;
+    grid-area: editor;
+
 }
