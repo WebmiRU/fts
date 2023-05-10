@@ -462,14 +462,9 @@ main .messages {
     gap: 10px;
 }
 
-main .messages .space {
-    grid-area: space;
-    height: 40px;
-}
-
 main .messages .messages_1 {
     display: grid;
-    grid-template-areas: "icon-avatar nickname time space" "icon-avatar text text text" "icon-avatar replies replies replies";
+    grid-template-areas: "icon-avatar nickname time time" "icon-avatar text text text" "icon-avatar replies replies replies";
     grid-template-columns: 40px min-content min-content 1fr;
     border-bottom: white 1px solid;
     padding-bottom: 5px;
@@ -482,6 +477,7 @@ main .messages .icon-avatar {
     width: 40px;
     background: url('https://avatars.akamai.steamstatic.com/c59df74416a5efd9fd7dd099d899fa7b28cba6c6_full.jpg');
     background-size: contain;
+    border-radius: 6px;
 }
 
 main .messages .mini-avatar {
@@ -490,6 +486,7 @@ main .messages .mini-avatar {
     width: 20px;
     background: url('https://avatars.akamai.steamstatic.com/c59df74416a5efd9fd7dd099d899fa7b28cba6c6_full.jpg');
     background-size: contain;
+    border-radius: 6px;
 }
 
 main .messages .text {
@@ -522,15 +519,194 @@ main .messages .time_day {
 
 main .text-editor {
     list-style-type: none;
-    display: grid;
+    display: flex;
     grid-area: text-editor;
-    height: 150px;
+    height: 200px;
+    width: 100%;
     padding: 10px 20px;
-    border: black 1px solid;
 }
 
 main .text-editor .editor {
-    display: block;
-    grid-area: editor;
+    display: grid;
+    grid-template-areas: "bold italic underline vr1 link vr2 list vr3 align-left vr4 code terminal"
+    "text text text text text text text text text text text text"
+    "plus litera smile monkey vr5 video mic vr6 sharp aircraft vr7 icon-add";
+    grid-template-columns: repeat(12, 20px);
+    border: black 1px solid;
+    border-radius: 10px;
+    flex-grow: 1;
+    padding: 10px 20px;
+    gap: 6px;
+}
 
+main .text-editor .editor .bold {
+    grid-area: 1 / 1;
+    height: 20px;
+    width: 20px;
+    background: url('../img/bold1.svg');
+    background-size: contain;
+    border-radius: 6px;
+}
+
+main .text-editor .editor .italic {
+    grid-area: 1 / 2;
+    height: 20px;
+    width: 20px;
+    background: url('../img/italic1.svg');
+    background-size: contain;
+    border-radius: 6px;
+}
+
+main .text-editor .underline {
+    grid-area: 1 / 3;
+    height: 20px;
+    width: 20px;
+    background: url('../img/underline1.svg');
+    background-size: contain;
+    border-radius: 6px;
+}
+
+main .text-editor .link {
+    grid-area: 1 / 5;
+    height: 20px;
+    width: 20px;
+    background: url('../img/link1.svg');
+    background-size: contain;
+    border-radius: 6px;
+}
+
+main .text-editor .list {
+    grid-area: 1 / 7;
+    height: 20px;
+    width: 20px;
+    background: url('../img/list1.svg');
+    background-size: contain;
+    border-radius: 6px;
+}
+
+main .text-editor .align-left {
+    grid-area: 1 / 9;
+    height: 20px;
+    width: 20px;
+    background: url('../img/align-left1.svg');
+    background-size: contain;
+    border-radius: 6px;
+}
+
+main .text-editor .code {
+    grid-area: 1 / 11;
+    height: 20px;
+    width: 20px;
+    background: url('../img/code1.svg');
+    background-size: contain;
+    border-radius: 6px;
+}
+
+main .text-editor .terminal {
+    grid-area: 1 / 12;
+    height: 20px;
+    width: 20px;
+    background: url('../img/terminal1.svg');
+    background-size: contain;
+    border-radius: 6px;
+}
+
+main .text-editor .plus {
+    grid-area: 3 / 1;
+    height: 20px;
+    width: 20px;
+    background: url('../img/plus1.svg');
+    background-size: contain;
+    border-radius: 6px;
+}
+
+main .text-editor .litera {
+    grid-area: 3 / 2;
+    height: 20px;
+    width: 20px;
+    background: url('../img/bold1.svg');
+    background-size: contain;
+    border-radius: 6px;
+}
+
+main .text-editor .smile {
+    grid-area: 3 / 3;
+    height: 20px;
+    width: 20px;
+    background: url('../img/smile1.svg');
+    background-size: contain;
+    border-radius: 6px;
+}
+
+main .text-editor .monkey {
+    grid-area: 3 / 4;
+    height: 20px;
+    width: 20px;
+    background: url('../img/at-sign1.svg');
+    background-size: contain;
+    border-radius: 6px;
+}
+
+main .text-editor .video {
+    grid-area: 3 / 6;
+    height: 20px;
+    width: 20px;
+    background: url('../img/video1.svg');
+    background-size: contain;
+    border-radius: 6px;
+}
+
+main .text-editor .mic {
+    grid-area: 3 / 7;
+    height: 20px;
+    width: 20px;
+    background: url('../img/mic1.svg');
+    background-size: contain;
+    border-radius: 6px;
+}
+
+main .text-editor .sharp {
+    grid-area: 3 / 9;
+    height: 20px;
+    width: 20px;
+    background: url('../img/hash1.svg');
+    background-size: contain;
+    border-radius: 6px;
+}
+
+main .text-editor .aircraft {
+    grid-area: 3 / 10;
+    height: 20px;
+    width: 20px;
+    background: url('../img/send1.svg');
+    background-size: contain;
+    border-radius: 6px;
+}
+
+main .text-editor .icon-add {
+    grid-area: 3 / 12;
+    height: 20px;
+    width: 20px;
+    background: url('../img/chevron-down1.svg');
+    background-size: contain;
+    border-radius: 6px;
+}
+
+main .text-editor .vr {
+    text-align: center;
+}
+
+main .text-editor .text {
+    grid-area: 2 / 1 / 2 / 13;
+}
+
+main .icon:hover {
+    background-color: darkgrey !important;
+}
+
+main .text-editor textarea {
+    display: block;
+    height: 70px;
+    width: 100%;
+    border-radius: 6px;
 }
