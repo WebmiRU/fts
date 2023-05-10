@@ -67,7 +67,7 @@ func accept(w http.ResponseWriter, r *http.Request) {
 			break
 
 		case "channel/list":
-			if !checkUserLoggedIn(socket) {
+			if !userLoggedIn(socket) {
 				break
 			}
 

@@ -5,7 +5,7 @@ import (
 	"github.com/gorilla/websocket"
 )
 
-func checkUserLoggedIn(socket *websocket.Conn) bool {
+func userLoggedIn(socket *websocket.Conn) bool {
 	if _, ok := sockets[socket]; !ok {
 		var response, _ = json.Marshal(MessageAuthLoginError) // @TODO Change reponse
 		socket.WriteMessage(websocket.TextMessage, response)
