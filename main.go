@@ -15,6 +15,7 @@ import (
 
 var db *gorm.DB
 var sockets = make(map[*websocket.Conn]*User)
+var channels = make(map[uint64][]*websocket.Conn)
 var addr = flag.String("addr", "0.0.0.0:13900", "http service address")
 var upgrader = websocket.Upgrader{
 	CheckOrigin: func(r *http.Request) bool {
@@ -34,7 +35,15 @@ func accept(w http.ResponseWriter, r *http.Request) {
 	for {
 		_, message, err := socket.ReadMessage()
 
-		if err != nil {
+		if err != nil { // Connection closed
+			delete(sockets, socket)
+
+			for id := range channels {
+				for k, v := range channels[id] {
+					// @TODO Разобраться со слайсами, мапами и прочими делами
+				}
+			}
+
 			log.Println("read:", err)
 			break
 		}
@@ -59,6 +68,11 @@ func accept(w http.ResponseWriter, r *http.Request) {
 
 			sockets[socket] = &user
 
+			for _, v := range user.Channels {
+				channels[v.ID] = append(channels[v.ID], socket)
+				fmt.Printf("\n\n%+v\n\n", channels)
+			}
+
 			response, _ := json.Marshal(MessageAuthLoginOK)
 			socket.WriteMessage(websocket.TextMessage, response)
 
@@ -75,6 +89,21 @@ func accept(w http.ResponseWriter, r *http.Request) {
 			response, _ := json.Marshal(channels)
 
 			socket.WriteMessage(websocket.TextMessage, response)
+
+			break
+
+		case "channel/message":
+			if !userLoggedIn(socket) {
+				break
+			}
+
+			channelMessage := ChannelMessage{
+				UserId:  sockets[socket].ID,
+				Message: msg.Payload.Message,
+				Text:    msg.Payload.Text,
+			}
+
+			json.Marshal(channelMessage)
 
 			break
 		}

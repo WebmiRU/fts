@@ -15,3 +15,10 @@ type Channel struct {
 	Model
 	Title string
 }
+
+type ChannelMessage struct {
+	Model
+	UserId  uint64
+	Message string
+	Text    string
+}
