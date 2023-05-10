@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"github.com/gorilla/websocket"
+	"golang.org/x/exp/slices"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"
@@ -38,9 +39,12 @@ func accept(w http.ResponseWriter, r *http.Request) {
 		if err != nil { // Connection closed
 			delete(sockets, socket)
 
-			for id := range channels {
-				for k, v := range channels[id] {
-					// @TODO Разобраться со слайсами, мапами и прочими делами
+			for channelId := range channels {
+				idx := slices.Index(channels[channelId], socket)
+
+				if idx >= 0 { // Delete socket from channel list
+					channels[channelId][idx] = channels[channelId][len(channels[channelId])-1]
+					channels[channelId] = channels[channelId][:len(channels[channelId])-1]
 				}
 			}
 
@@ -113,7 +117,7 @@ func accept(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	dsn := "host=localhost user=fts password=fts dbname=fts port=5432 sslmode=disable TimeZone=Europe/Moscow"
+	dsn := "host=192.168.1.151 user=fts password=fts dbname=fts port=5415 sslmode=disable TimeZone=Europe/Moscow"
 	var e error
 
 	db, e = gorm.Open(postgres.Open(dsn), &gorm.Config{
