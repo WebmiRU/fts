@@ -40,13 +40,17 @@ func accept(w http.ResponseWriter, r *http.Request) {
 			delete(sockets, socket)
 
 			for channelId := range channels {
-				idx := slices.Index(channels[channelId], socket)
-
-				if idx >= 0 { // Delete socket from channel list
+				//if _, ok := sockets[socket]; !ok {
+				if idx := slices.Index(channels[channelId], socket); idx >= 0 {
 					channels[channelId] = slices.Delete(channels[channelId], idx, idx)
-					//channels[channelId][idx] = channels[channelId][len(channels[channelId])-1]
-					//channels[channelId] = channels[channelId][:len(channels[channelId])-1]
+					fmt.Println("DELETE INDEX:", idx)
 				}
+
+				//if idx >= 0 { // Delete socket from channel list
+				//	channels[channelId] = slices.Delete(channels[channelId], idx, idx)
+				//	//channels[channelId][idx] = channels[channelId][len(channels[channelId])-1]
+				//	//channels[channelId] = channels[channelId][:len(channels[channelId])-1]
+				//}
 			}
 
 			log.Println("read:", err)
