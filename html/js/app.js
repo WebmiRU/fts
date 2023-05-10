@@ -20,6 +20,19 @@ socket.onerror = function(error) {
 let textarea = document.querySelector(".editor textarea");
 let message = textarea.value;
 
+textarea.onkeydown = function (e) {
+    if (e.key === "Enter") {
+        e.preventDefault();
+    }
+}
+
+textarea.onkeyup = function (e) {
+    if (e.key === "Enter") {
+        // socket.send();
+        textarea.value = null;
+    }
+}
+
 let msg1 = JSON.stringify({ // Auth (login)
     type: "auth/login",
     payload: {
