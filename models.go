@@ -18,7 +18,8 @@ type Channel struct {
 
 type ChannelMessage struct {
 	Model
-	UserId  uint64
-	Message string
-	Text    string
+	UserId    uint64
+	ChannelId uint64
+	Message   string
+	Text      string
 }

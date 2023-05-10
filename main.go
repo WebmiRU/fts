@@ -102,12 +102,18 @@ func accept(w http.ResponseWriter, r *http.Request) {
 			}
 
 			channelMessage := ChannelMessage{
-				UserId:  sockets[socket].ID,
-				Message: msg.Payload.Message,
-				Text:    msg.Payload.Text,
+				UserId:    sockets[socket].ID,
+				ChannelId: msg.Payload.ChannelId,
+				Message:   msg.Payload.Message,
+				Text:      msg.Payload.Text,
 			}
 
-			json.Marshal(channelMessage)
+			m, _ := json.Marshal(channelMessage)
+
+			// Send channel clients message
+			for _, s := range channels[msg.Payload.ChannelId] {
+				s.WriteMessage(websocket.TextMessage, m)
+			}
 
 			break
 		}
