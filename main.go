@@ -48,10 +48,10 @@ func accept(w http.ResponseWriter, r *http.Request) {
 
 		switch strings.ToLower(msg.Type) {
 		case "auth/login":
-			var user = cmdAuthLogin(msg.Payload.Token)
+			user := cmdAuthLogin(msg.Payload.Token)
 
 			if user.ID == 0 {
-				var response, _ = json.Marshal(MessageAuthLoginError)
+				response, _ := json.Marshal(MessageAuthLoginError)
 				socket.WriteMessage(websocket.TextMessage, response)
 				socket.Close() // Auth error
 				break
@@ -59,7 +59,7 @@ func accept(w http.ResponseWriter, r *http.Request) {
 
 			sockets[socket] = &user
 
-			var response, _ = json.Marshal(MessageAuthLoginOK)
+			response, _ := json.Marshal(MessageAuthLoginOK)
 			socket.WriteMessage(websocket.TextMessage, response)
 
 			println("ID:", user.ID)
@@ -71,8 +71,8 @@ func accept(w http.ResponseWriter, r *http.Request) {
 				break
 			}
 
-			var channels = messageUserChannelList{Payload: sockets[socket].Channels}
-			var response, _ = json.Marshal(channels)
+			channels := messageUserChannelList{Payload: sockets[socket].Channels}
+			response, _ := json.Marshal(channels)
 
 			socket.WriteMessage(websocket.TextMessage, response)
 
@@ -84,7 +84,7 @@ func accept(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	var dsn = "host=localhost user=fts password=fts dbname=fts port=5432 sslmode=disable TimeZone=Europe/Moscow"
+	dsn := "host=localhost user=fts password=fts dbname=fts port=5432 sslmode=disable TimeZone=Europe/Moscow"
 	var e error
 
 	db, e = gorm.Open(postgres.Open(dsn), &gorm.Config{
