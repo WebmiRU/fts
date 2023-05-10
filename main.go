@@ -111,6 +111,7 @@ func accept(w http.ResponseWriter, r *http.Request) {
 			m, _ := json.Marshal(channelMessage)
 
 			// Send channel clients message
+			// @TODO Add check user in channel before send message
 			for _, s := range channels[msg.Payload.ChannelId] {
 				s.WriteMessage(websocket.TextMessage, m)
 			}
