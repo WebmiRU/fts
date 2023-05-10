@@ -43,8 +43,9 @@ func accept(w http.ResponseWriter, r *http.Request) {
 				idx := slices.Index(channels[channelId], socket)
 
 				if idx >= 0 { // Delete socket from channel list
-					channels[channelId][idx] = channels[channelId][len(channels[channelId])-1]
-					channels[channelId] = channels[channelId][:len(channels[channelId])-1]
+					channels[channelId] = slices.Delete(channels[channelId], idx, idx)
+					//channels[channelId][idx] = channels[channelId][len(channels[channelId])-1]
+					//channels[channelId] = channels[channelId][:len(channels[channelId])-1]
 				}
 			}
 
