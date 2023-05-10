@@ -35,3 +35,19 @@ var MessageAuthLoginError = messageAuthLoginError{
 		Text:    "Auth error",
 	},
 }
+
+type messageUserChannelList struct {
+	Type    string    `json:"type"`
+	Payload []Channel `json:"payload"`
+}
+
+//type messageChannelMessagePayload struct {
+//	ChannelId uint64 `json:"channel_id"`
+//	Message   string `json:"message"`
+//	Text      string `json:"text"`
+//}
+//
+//type MessageChannelMessage struct {
+//	Type    string                       `json:"type"`
+//	Payload messageChannelMessagePayload `json:"payload"`
+//}
