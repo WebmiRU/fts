@@ -48,7 +48,7 @@ func accept(w http.ResponseWriter, r *http.Request) {
 
 		switch strings.ToLower(msg.Type) {
 		case "auth/login":
-			var user = cmdLogin(msg.Payload.Token)
+			var user = cmdAuthLogin(msg.Payload.Token)
 
 			if user.ID == 0 {
 				var response, _ = json.Marshal(MessageAuthLoginError)
@@ -64,6 +64,18 @@ func accept(w http.ResponseWriter, r *http.Request) {
 
 			println("ID:", user.ID)
 			fmt.Printf("\nCHANNELS:\n%+v\n:", sockets)
+			break
+
+		case "channel/list":
+			if !checkUserLoggedIn(socket) {
+				break
+			}
+
+			var channels = messageUserChannelList{Payload: sockets[socket].Channels}
+			var response, _ = json.Marshal(channels)
+
+			socket.WriteMessage(websocket.TextMessage, response)
+
 			break
 		}
 
