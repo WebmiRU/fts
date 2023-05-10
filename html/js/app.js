@@ -19,6 +19,7 @@ socket.onerror = function(error) {
 
 let textarea = document.querySelector(".editor textarea");
 let message = textarea.value;
+let messages = document.querySelector(".messages");
 
 textarea.onkeydown = function (e) {
     if (e.key === "Enter") {
@@ -30,6 +31,20 @@ textarea.onkeyup = function (e) {
     if (e.key === "Enter") {
         // socket.send();
         textarea.value = null;
+
+        messages.insertAdjacentHTML('beforeend', `
+            <div class="messages_1" id="${999}">
+                <div class="icon-avatar"></div>
+                <div class="nickname">nickname</div>
+                <div class="time">${(new Date).toLocaleTimeString()}</div>
+                <div class="text">${message}</div>
+                <div class="replies">
+                    <div class="mini-avatar"></div>
+                    <div class="reply">0 reply</div>
+                    <div class="time_day">7 day ago</div>
+                </div>
+            </div>        
+        `);
     }
 }
 
