@@ -2,7 +2,8 @@
 
 First, you need login to chat server
 
-#### Request
+#### Request: Login/Auth
+
 ```json
 {
   "type": "auth/login",
@@ -12,7 +13,8 @@ First, you need login to chat server
 }
 ```
 
-#### Success response
+#### Response: Success
+
 ```json
 {
   "type": "auth/login",
@@ -22,7 +24,8 @@ First, you need login to chat server
 }
 ```
 
-#### Error response
+#### Response: Error
+
 ```json
 {
   "type": "auth/login",
@@ -32,3 +35,48 @@ First, you need login to chat server
 }
 ```
 
+### Get channel list
+
+Get user channel list
+
+#### Request: Get channel list
+
+```json
+{
+  "type": "channel/list"
+}
+```
+
+#### Response: Success
+
+```json
+{
+  "type": "channel/list",
+  "success": true,
+  "payload": [
+    {
+      "id": 1,
+      "title": "Channel 1"
+    },
+    {
+      "id": 2,
+      "title": "Channel 2"
+    },
+    {
+      "id": 3,
+      "title": "Channel 3"
+    }
+  ]
+}
+```
+
+#### Response: Error
+
+```json
+{
+  "type": "auth/login",
+  "success": false,
+  "payload": {
+  }
+}
+```

@@ -1,7 +1,7 @@
 package main
 
 type Model struct {
-	ID uint64 `gorm:"primarykey"`
+	ID uint64 `gorm:"primarykey" json:"id"`
 }
 
 type User struct {
@@ -13,13 +13,13 @@ type User struct {
 
 type Channel struct {
 	Model
-	Title string
+	Title string `json:"title"`
 }
 
 type ChannelMessage struct {
 	Model
-	UserId    uint64
-	ChannelId uint64
-	Message   string
-	Text      string
+	UserId    uint64 `json:"user_id"`
+	ChannelId uint64 `json:"channel_id"`
+	Message   string `json:"message"`
+	Text      string `json:"text"`
 }
