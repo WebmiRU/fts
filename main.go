@@ -23,27 +23,27 @@ var upgrader = websocket.Upgrader{
 }
 
 func accept(w http.ResponseWriter, r *http.Request) {
-	socket, e := upgrader.Upgrade(w, r, nil)
-	if e != nil {
-		log.Print("UPGRADE:", e)
+	socket, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		log.Print("UPGRADE:", err)
 		return
 	}
 
 	defer socket.Close()
 
 	for {
-		_, message, e := socket.ReadMessage()
+		_, message, err := socket.ReadMessage()
 
-		if e != nil {
-			log.Println("read:", e)
+		if err != nil {
+			log.Println("read:", err)
 			break
 		}
 
 		var msg Message
-		e = json.Unmarshal(message, &msg)
+		err = json.Unmarshal(message, &msg)
 
-		if e != nil {
-			fmt.Println("JSON PARSE ERROR", e)
+		if err != nil {
+			fmt.Println("JSON PARSE ERROR", err)
 		}
 
 		switch strings.ToLower(msg.Type) {
