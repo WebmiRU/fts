@@ -129,7 +129,7 @@ func accept(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	dsn := "host=192.168.1.151 user=fts password=fts dbname=fts port=5415 sslmode=disable TimeZone=Europe/Moscow"
+	dsn := "host=127.0.0.1 user=fts password=fts dbname=fts port=5432 sslmode=disable TimeZone=Europe/Moscow"
 	var e error
 
 	db, e = gorm.Open(postgres.Open(dsn), &gorm.Config{

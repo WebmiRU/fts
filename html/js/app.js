@@ -1,3 +1,4 @@
+
 let socket = new WebSocket("ws://localhost:13900");
 
 socket.onopen = function(e) {
@@ -18,26 +19,29 @@ socket.onerror = function(error) {
 };
 
 let textarea = document.querySelector(".editor textarea");
-let message = textarea.value;
+// let message = textarea.value;
 let messages = document.querySelector(".messages");
 
-textarea.onkeydown = function (e) {
-    if (e.key === "Enter") {
-        e.preventDefault();
-    }
-}
+// textarea.onkeydown = function (e) {
+//     if (e.key === "Enter") {
+//         e.preventDefault();
+//     }
+// }
 
 textarea.onkeyup = function (e) {
     if (e.key === "Enter") {
         // socket.send();
-        textarea.value = null;
+        //  let message = textarea.value;
+        // textarea.value
+
+
 
         messages.insertAdjacentHTML('beforeend', `
             <div class="messages_1" id="${999}">
                 <div class="icon-avatar"></div>
                 <div class="nickname">nickname</div>
                 <div class="time">${(new Date).toLocaleTimeString()}</div>
-                <div class="text">${message}</div>
+                <div class="text">${textarea.value}</div>
                 <div class="replies">
                     <div class="mini-avatar"></div>
                     <div class="reply">0 reply</div>
@@ -45,6 +49,7 @@ textarea.onkeyup = function (e) {
                 </div>
             </div>        
         `);
+        textarea.value = null;
     }
 }
 
